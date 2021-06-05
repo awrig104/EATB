@@ -63,7 +63,7 @@ public class Admin_Form extends JFrame {
             }else if(e.getSource() == listorgButton){
 
             }else if(e.getSource() == removeuserButton){
-                
+
             }
         }
     }
