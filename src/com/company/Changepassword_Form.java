@@ -72,7 +72,8 @@ public class Changepassword_Form extends JFrame {
             if(e.getSource() == changeButton){
 
             }else if(e.getSource() == backButton){
-                
+                changeFrame.dispose();
+                new User_Form();
             }
         }
     }

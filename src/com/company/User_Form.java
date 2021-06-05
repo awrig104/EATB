@@ -66,15 +66,18 @@ public class User_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == buyButton){
-
+                userFrame.dispose();
+                new Buymenu_Form();
             }else if(e.getSource() == sellButton){
-
+                userFrame.dispose();
+                new Sellmenu_Form();
             }else if(e.getSource() == listassetButton){
-
+                new Listallassets_Form();
             }else if(e.getSource() == listorgorderButton){
-
+                new Listorgorders_Form();
             }else if(e.getSource() == changepassButton){
-
+                userFrame.dispose();
+                new Changepassword_Form();
             }else if(e.getSource() == backButton){
                 userFrame.dispose();
                 new Admin_Form();
