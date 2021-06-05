@@ -55,7 +55,7 @@ public class Orgdata_Form extends JFrame{
             if(e.getSource() == searchButton){
 
             }else if(e.getSource() == backButton){
-                
+
             }
         }
     }
