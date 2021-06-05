@@ -102,13 +102,39 @@ public class Orgedit_Form extends JFrame{
             }else if(e.getSource() == memberButton){
                 new Showorgmember_Form();
             }else if(e.getSource() == creditaddButton){
-
+                String name  = String.valueOf(creditText.getText()).trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter the amount of credits");
+                }else{
+                    outcomeLabel.setText("Added credits");
+                }
             }else if(e.getSource() == credittakeButton){
-
+                String name  = String.valueOf(creditText.getText()).trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter the amount of credits");
+                }else{
+                    outcomeLabel.setText("Took away credits");
+                }
             }else if(e.getSource() == assetaddButton){
-
+                String name  = assetnameText.getText().trim();
+                String value  = String.valueOf(assetText.getText()).trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter the name of the asset");
+                }else if(value.equals("")) {
+                    outcomeLabel.setText("Enter the amount of assets");
+                }else{
+                    outcomeLabel.setText("Added assets");
+                }
             }else if(e.getSource() == assettakeButton){
-
+                String name  = assetnameText.getText().trim();
+                String value  = String.valueOf(assetText.getText()).trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter the name of the asset");
+                }else if(value.equals("")) {
+                    outcomeLabel.setText("Enter the amount of assets");
+                }else{
+                    outcomeLabel.setText("Took away assets");
+                }
             }else if(e.getSource() == backButton){
                 orgeditFrame.dispose();
                 new Admin_Form();

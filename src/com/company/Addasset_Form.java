@@ -54,7 +54,7 @@ public class Addasset_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == addassetButton){
-
+                outcomeLabel.setText("You added a new asset");
             }else if(e.getSource() == backButton){
                 addmemberFrame.dispose();
                 new Admin_Form();

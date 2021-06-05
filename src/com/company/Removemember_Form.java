@@ -61,7 +61,17 @@ public class Removemember_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == removeButton){
-
+                String user = String.valueOf(nameText.getText()).trim();
+                String verify = String.valueOf(confirmText.getText()).trim();
+                if(user.equals("")){
+                    outcomeLabel.setText("Enter the Username First");
+                } else if(verify.equals("")){
+                    outcomeLabel.setText("You Need To Enter the username again");
+                } else if(user.equals(verify)){
+                    outcomeLabel.setText("You removed the user");
+                } else{
+                    outcomeLabel.setText("The username fields do not match");
+                }
             }else if(e.getSource() == backButton){
                 removeFrame.dispose();
                 new Admin_Form();

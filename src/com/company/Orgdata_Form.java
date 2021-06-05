@@ -53,7 +53,13 @@ public class Orgdata_Form extends JFrame{
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == searchButton){
-
+                String name  = orgText.getText().trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter an organisation name first");
+                }else{
+                    orgdataFrame.dispose();
+                    new Orgedit_Form();
+                }
             }else if(e.getSource() == backButton){
                 orgdataFrame.dispose();
                 new Admin_Form();

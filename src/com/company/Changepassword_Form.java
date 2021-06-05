@@ -70,7 +70,22 @@ public class Changepassword_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == changeButton){
-
+                String current = String.valueOf(currentText.getText()).trim();
+                String password = String.valueOf(passText.getText()).trim();
+                String verify = String.valueOf(verifyText.getText()).trim();
+                if(current.equals("")){
+                    outcomeLabel.setText("Enter The Current Password First");
+                } else if(password.equals("")){
+                    outcomeLabel.setText("Enter your new password");
+                } else if(verify.equals("")){
+                    outcomeLabel.setText("Enter your new password again to verify");
+                } else if(verify.equals(current) || password.equals(current)){
+                    outcomeLabel.setText("You new Password must be different from your current password");
+                } else if(verify.equals(password)){
+                    outcomeLabel.setText("You Changed Your Password");
+                } else{
+                    outcomeLabel.setText("New Passwords do not match");
+                }
             }else if(e.getSource() == backButton){
                 changeFrame.dispose();
                 new User_Form();

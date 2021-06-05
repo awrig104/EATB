@@ -78,7 +78,21 @@ public class Buymenu_Form extends JFrame {
                 buyFrame.dispose();
                 new Listsellorder_Form();
             }else if(e.getSource() == placeorderButton){
-
+                String name  = nameText.getText().trim();
+                String quantity = String.valueOf(quantityText.getText()).trim();
+                String price = String.valueOf(priceText.getText()).trim();
+                if(name.equals("")) {
+                    outcomeLabel.setText("Enter an asset name first");
+                }
+                else if(quantity.equals("")) {
+                    outcomeLabel.setText("Enter the Quantity");
+                }
+                else if(price.equals("")) {
+                    outcomeLabel.setText("Enter the price");
+                }
+                else {
+                    outcomeLabel.setText("Thank you for placing your order"); //check if asset exists
+                }
             }else if(e.getSource() == backButton){
                 buyFrame.dispose();
                 new User_Form();

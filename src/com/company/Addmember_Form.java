@@ -81,7 +81,23 @@ public class Addmember_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == addmemberButton){
-
+                String password = String.valueOf(passwordText.getText()).trim();
+                String verify = String.valueOf(verifyText.getText()).trim();
+                String type = String.valueOf(accText.getText()).trim();
+                String name  = orgText.getText().trim();
+                if(password.equals("")){
+                    outcomeLabel.setText("Enter The Password First");
+                } else if(verify.equals("")){
+                    outcomeLabel.setText("Enter your password again to verify");
+                } else if(type.equals("")){
+                    outcomeLabel.setText("Enter the account type");
+                } else if(name.equals("")){
+                    outcomeLabel.setText("Enter the name of the organisation"); //check if org exists
+                } else if(verify.equals(password)){
+                    outcomeLabel.setText("You added a new member");
+                } else{
+                    outcomeLabel.setText("Passwords do not match");
+                }
             }else if(e.getSource() == backButton){
                 addmemberFrame.dispose();
                 new Admin_Form();
