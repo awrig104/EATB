@@ -74,7 +74,7 @@ public class Sellmenu_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == buyorderButton){
-
+                new Listbuyorder_Form();
             }else if(e.getSource() == uploadorderButton){
 
             }else if(e.getSource() == backButton){
