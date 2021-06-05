@@ -76,7 +76,8 @@ public class User_Form extends JFrame {
             }else if(e.getSource() == changepassButton){
 
             }else if(e.getSource() == backButton){
-
+                userFrame.dispose();
+                new Admin_Form();
             }
         }
     }

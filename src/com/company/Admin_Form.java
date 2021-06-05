@@ -55,15 +55,20 @@ public class Admin_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == usermenuButton){
-
+                adminFrame.dispose();
+                new User_Form();
             }else if(e.getSource() == addmemberButton){
-
+                adminFrame.dispose();
+                new Addmember_Form();
             }else if(e.getSource() == addassetButton){
-
+                adminFrame.dispose();
+                new Addasset_Form();
             }else if(e.getSource() == listorgButton){
-
+                adminFrame.dispose();
+                new Orgdata_Form();
             }else if(e.getSource() == removeuserButton){
-
+                adminFrame.dispose();
+                new Removemember_Form();
             }
         }
     }

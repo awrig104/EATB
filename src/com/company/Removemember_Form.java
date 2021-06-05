@@ -63,7 +63,8 @@ public class Removemember_Form extends JFrame {
             if(e.getSource() == removeButton){
 
             }else if(e.getSource() == backButton){
-                
+                removeFrame.dispose();
+                new Admin_Form();
             }
         }
     }

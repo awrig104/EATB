@@ -56,7 +56,8 @@ public class Addasset_Form extends JFrame {
             if(e.getSource() == addassetButton){
 
             }else if(e.getSource() == backButton){
-
+                addmemberFrame.dispose();
+                new Admin_Form();
             }
         }
     }

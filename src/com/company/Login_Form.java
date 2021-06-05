@@ -60,7 +60,8 @@ public class Login_Form extends JFrame implements ActionListener {
         } else if(password.equals("")){
             outcomeLabel.setText("You Need To Enter Your Password");
         } else if(username.equals("admin") && password.equals("pass123")){
-            outcomeLabel.setText("You have been logged in");
+            loginFrame.dispose();
+            new Admin_Form();
         } else{
             outcomeLabel.setText("Incorrect Username or Password");
         }
