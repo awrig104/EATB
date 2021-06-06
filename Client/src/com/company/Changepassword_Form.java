@@ -14,7 +14,7 @@ public class Changepassword_Form extends JFrame {
 
     Changepassword_Form() {
         changePanel = new JPanel();
-        changeFrame = new JFrame("Login Page");
+        changeFrame = new JFrame("Change Password");
         changeFrame.setSize(400, 300);
         changeFrame.setLocationRelativeTo(null);
         changeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

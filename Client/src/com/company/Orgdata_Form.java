@@ -74,17 +74,27 @@ public class Orgdata_Form extends JFrame{
                 if(name.equals("")) {
                     outcomeLabel.setText("Enter an organisation name first");
                 }else{
+                    try
+                    {
+                        Main.listOrganisation();
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     orgdataFrame.dispose();
                     new Orgedit_Form();
                 }
             }else if(e.getSource() == orgaddButton){
                 String name  = orgaddText.getText().trim();
-                if(name.equals("")) {
-                    outcomeLabel.setText("Enter an organisation name to add first");
-                }else
-                {
-                    outcomeLabel.setText("You have added an organisation");
+                try {
+
+                    Main.addOrganisation();
+                } catch (Exception exception) {
+
+                    exception.printStackTrace();
                 }
+                outcomeLabel.setText("You have added an organisation");
+
             }else if(e.getSource() == backButton){
                 orgdataFrame.dispose();
                 new Admin_Form();

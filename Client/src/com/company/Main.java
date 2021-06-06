@@ -39,23 +39,56 @@ public class Main {
         out.writeObject("login false");
         out.flush();
         str  = (String)in.readObject();
-        s.close();
         username = user;
         password = pass;
+        out.flush();
         return str;
     }
 
-    /*
-    public static String addAsset(String asset_name) throws Exception
+    public static void addAsset(String asset_name) throws Exception
     {
         Socket s = new Socket(SERVER_IP, SERVER_PORT);
         ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-        String str;
+        out.writeObject("asset add true");
+        out.writeObject(asset_name);
+        out.flush();
     }
 
-     */
+    public static void addUser(String password, String account_type, String org_id) throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("add user true");
+        out.writeObject(password);
+        out.writeObject(account_type);
+        out.writeObject(org_id);
+        out.flush();
+    }
 
+    public static void listOrganisation() throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("list org true");
+        out.flush();
+    }
+
+    public static void addOrganisation() throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("add org true");
+        out.flush();
+    }
+
+    public static void removeUser(String username) throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("remove user true");
+        out.writeObject(username);
+        out.flush();
+    }
 
     public static LocalDateTime CurrentDateTime()
     {

@@ -68,6 +68,13 @@ public class Removemember_Form extends JFrame {
                 } else if(verify.equals("")){
                     outcomeLabel.setText("You Need To Enter the username again");
                 } else if(user.equals(verify)){
+                    try
+                    {
+                        Main.removeUser(user);
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     outcomeLabel.setText("You removed the user");
                 } else{
                     outcomeLabel.setText("The username fields do not match");

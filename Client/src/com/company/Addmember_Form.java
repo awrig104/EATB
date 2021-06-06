@@ -93,7 +93,15 @@ public class Addmember_Form extends JFrame {
                     outcomeLabel.setText("Enter the account type");
                 } else if(name.equals("")){
                     outcomeLabel.setText("Enter the name of the organisation"); //check if org exists
-                } else if(verify.equals(password)){
+                } else if(verify.equals(password))
+                {
+                    try
+                    {
+                        Main.addUser(password, type, name);
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     outcomeLabel.setText("You added a new member");
                 } else{
                     outcomeLabel.setText("Passwords do not match");

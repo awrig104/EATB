@@ -52,13 +52,14 @@ public class Addasset_Form extends JFrame {
     }
 
     private class ButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             String addAsset = assetText.getText().trim();
 
             if(e.getSource() == addassetButton){
                 try
                 {
-                    // gdfgdrfgdfg
+                    Main.addAsset(addAsset);
                     outcomeLabel.setText("You added a new asset: " + addAsset);
                 } catch (Exception exception)
                 {
