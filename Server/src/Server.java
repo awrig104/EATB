@@ -71,35 +71,6 @@ public class Server
         }
     }
 
-    // baseline for select stuff
-    public static ArrayList<String> get() throws Exception
-    {
-        try
-        {
-            Connection connection = getConnection();
-            PreparedStatement select = connection.prepareStatement("SELECT * FROM test;");
-            ResultSet result = select.executeQuery();
-
-            ArrayList<String> arr = new ArrayList<String>();
-            while (result.next())
-            {
-                System.out.print(result.getString("first_name"));
-                System.out.print(" ");
-                System.out.println(result.getString("last_name"));
-
-                arr.add(result.getString("first_name"));
-                arr.add(result.getString("last_name"));
-            }
-            System.out.println("All records have been selected");
-            return arr;
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     // SQL statement for adding an asset
     public static String insertAsset(String asset_names)
     {
@@ -122,6 +93,24 @@ public class Server
     public static String deleteUser(String user)
     {
         String query = "DELETE FROM user_information where username = '" + user + "';";
+        return query;
+    }
+
+    public static String updatePassword(String newPass, String oldPass)
+    {
+        String query = "UPDATE user_information SET password = '" + newPass + "' WHERE password = '" + oldPass + "';";
+        return query;
+    }
+
+    public static String insertBuyRequest(String assetName, String quantity, String price, String org_id)
+    {
+        String query = "INSERT INTO current_trades (buy_sell, asset_id, quantity, price, organisation_id) VALUES ('buy', '" + assetName + "','" + quantity + "','" + price + "', '" + org_id + "');";
+        return query;
+    }
+
+    public static String insertSellRequest(String assetName, String quantity, String price, String org_id)
+    {
+        String query = "INSERT INTO current_trades (buy_sell, asset_id, quantity, price, organisation_id) VALUES ('sell', '" + assetName + "','" + quantity + "','" + price + "', '" + org_id + "');";
         return query;
     }
 
@@ -226,27 +215,37 @@ public class Server
     public static void main(String[] args) throws Exception
     {
 
-        //loginComparePassword(loginCompareUsername("1"),"admin");
-        //getPermission("2","hazza");
+
         // connection
         ServerSocket listener = new ServerSocket(SERVER_PORT);
         Socket client = null;
         String login = "login true";
         String temp = "asset add false";
+        String temp2 = "user menu false";
         String adminMenu = "admin menu false";
-
-        String adminOrganisationMenu = "null";
 
 
         String user;
         String password;
 
         String addPassword;
-        String addVerifyPassword;
         String addaccountType;
         String addOrgID;
 
         String removeUser;
+
+        String newPassword;
+        String oldPassword;
+
+        String assetNameBuy;
+        String quantityBuy;
+        String priceBuy;
+        String orgIDBuy;
+
+        String assetNameSell;
+        String quantitySell;
+        String priceSell;
+        String orgIDSell;
 
 
         while (true)
@@ -261,10 +260,41 @@ public class Server
             ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(client.getInputStream());
 
+
+            if (temp.equals("user menu true"))
+            {
+                temp2 = (String) in.readObject();
+            }
+            if (temp2.equals("change password true"))
+            {
+                newPassword = (String) in.readObject();
+                oldPassword = (String) in.readObject();
+                insertQuery(updatePassword(newPassword,oldPassword));
+            }
+
+            if (temp2.equals("List buy request"))
+            {
+                assetNameBuy = (String) in.readObject();
+                quantityBuy = (String) in.readObject();
+                priceBuy = (String) in.readObject();
+                orgIDBuy = (String) in.readObject();
+                insertQuery(insertBuyRequest(assetNameBuy, quantityBuy, priceBuy, orgIDBuy));
+
+            }
+
+            if (temp2.equals("List sell request"))
+            {
+                assetNameSell = (String) in.readObject();
+                quantitySell = (String) in.readObject();
+                priceSell = (String) in.readObject();
+                orgIDSell = (String) in.readObject();
+                insertQuery(insertBuyRequest(assetNameSell, quantitySell, priceSell, orgIDSell));
+
+            }
+
             if (adminMenu.equals("admin menu true"))
             {
                 temp = (String) in.readObject(); // asset add true
-                //adminMenu = "admin menu false";
             }
 
             if (temp.equals("list org true"))
@@ -295,14 +325,12 @@ public class Server
             {
                 removeUser = (String) in.readObject();
                 insertQuery(deleteUser(removeUser));
-
             }
+            System.out.println(temp);
 
 
-            if (temp.equals("user menu true"))
-            {
 
-            }
+
 
             if (login.equals("login true")) {
                 user = (String) in.readObject();

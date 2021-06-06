@@ -89,6 +89,12 @@ public class Sellmenu_Form extends JFrame {
                     outcomeLabel.setText("Enter the price");
                 }
                 else {
+                    try {
+                        Main.listSellRequest(name, quantity, price, Main.organisation_id);
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     outcomeLabel.setText("Thank you for putting up your asset"); //check if asset is owned
                 }
             }else if(e.getSource() == backButton){

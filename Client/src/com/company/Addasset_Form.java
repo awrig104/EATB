@@ -71,4 +71,4 @@ public class Addasset_Form extends JFrame {
             }
         }
     }
-}//String username  = userText.getText().trim();
+}

@@ -79,10 +79,20 @@ public class Changepassword_Form extends JFrame {
                     outcomeLabel.setText("Enter your new password");
                 } else if(verify.equals("")){
                     outcomeLabel.setText("Enter your new password again to verify");
-                } else if(verify.equals(current) || password.equals(current)){
+                } else if(verify.equals(current) || password.equals(current) || password.equals(Main.password)|| verify.equals(Main.password))
+                {
                     outcomeLabel.setText("You new Password must be different from your current password");
-                } else if(verify.equals(password)){
+                } else if(verify.equals(password))
+                {
+                    try
+                    {
+                        Main.changePassword(password, current);
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     outcomeLabel.setText("You Changed Your Password");
+                    Main.password = password;
                 } else{
                     outcomeLabel.setText("New Passwords do not match");
                 }

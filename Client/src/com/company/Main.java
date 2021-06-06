@@ -1,31 +1,18 @@
 package com.company;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
 
     public static String username;
-    public static int organisation_id;
+    public static String organisation_id;
     public static String password;
-    public static int credits;
 
     private static final int SERVER_PORT = 4999;
     private static final String SERVER_IP = "localhost";
-
-
-
-    public static Socket getSocket() throws Exception
-    {
-        Socket s = new Socket(SERVER_IP, SERVER_PORT);
-        return s;
-    }
 
     public static String loginDetails(String user, String pass) throws Exception
     {
@@ -87,6 +74,56 @@ public class Main {
         ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
         out.writeObject("remove user true");
         out.writeObject(username);
+        out.flush();
+    }
+
+    public static void userMenu() throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("user menu true");
+        out.flush();
+    }
+
+    public static void backButton() throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("back");
+        out.flush();
+    }
+
+    public static void listBuyRequest(String assetName, String Quantity, String Price, String orgID) throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("List buy request");
+        out.writeObject(assetName);
+        out.writeObject(Quantity);
+        out.writeObject(Price);
+        out.writeObject(orgID);
+        out.flush();
+    }
+
+    public static void listSellRequest(String assetName, String Quantity, String Price, String orgID) throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("List sell request");
+        out.writeObject(assetName);
+        out.writeObject(Quantity);
+        out.writeObject(Price);
+        out.writeObject(orgID);
+        out.flush();
+    }
+
+    public static void changePassword (String newPass, String oldPass) throws Exception
+    {
+        Socket s = new Socket(SERVER_IP, SERVER_PORT);
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+        out.writeObject("change password true");
+        out.writeObject(newPass);
+        out.writeObject(oldPass);
         out.flush();
     }
 

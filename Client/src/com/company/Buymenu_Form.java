@@ -91,6 +91,12 @@ public class Buymenu_Form extends JFrame {
                     outcomeLabel.setText("Enter the price");
                 }
                 else {
+                    try {
+                        Main.listBuyRequest(name, quantity, price, Main.organisation_id);
+                    } catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
                     outcomeLabel.setText("Thank you for placing your order"); //check if asset exists
                 }
             }else if(e.getSource() == backButton){

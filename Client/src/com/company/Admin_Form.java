@@ -55,6 +55,12 @@ public class Admin_Form extends JFrame {
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == usermenuButton){
+                try {
+                    Main.userMenu();
+                } catch (Exception exception)
+                {
+                    exception.printStackTrace();
+                }
                 adminFrame.dispose();
                 new User_Form();
             }else if(e.getSource() == addmemberButton){
